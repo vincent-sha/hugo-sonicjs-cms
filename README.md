@@ -1,74 +1,74 @@
-# My SonicJS Application
+# 我的 SonicJS 应用
 
-A modern headless CMS built with [SonicJS](https://sonicjs.com) on Cloudflare's edge platform.
+一个使用 [SonicJS](https://sonicjs.com) 构建、运行在 Cloudflare 边缘平台上的现代无头 CMS（Headless CMS）。
 
-## Getting Started
+## 快速开始
 
-### Prerequisites
+### 前置条件
 
-- Node.js 18 or higher
-- A Cloudflare account (free tier works great)
-- Wrangler CLI (installed with dependencies)
+- Node.js 18 或更高版本
+- 一个 Cloudflare 账户（免费套餐就能很好地使用）
+- Wrangler CLI（随依赖项一起安装）
 
-### Installation
+### 安装
 
-1. **Install dependencies:**
+1. **安装依赖：**
    ```bash
    npm install
    ```
 
-2. **Create your D1 database:**
+2. **创建 D1 数据库：**
    ```bash
    npx wrangler d1 create my-sonicjs-db
    ```
 
-   Copy the `database_id` from the output and update it in `wrangler.toml`.
+   从输出中复制 `database_id` 并在 `wrangler.toml` 中更新它。
 
-3. **Create your R2 bucket:**
+3. **创建 R2 存储桶：**
    ```bash
    npx wrangler r2 bucket create my-sonicjs-media
    ```
 
-4. **Run migrations:**
+4. **运行迁移：**
    ```bash
    npm run db:migrate:local
    ```
 
-5. **Start the development server:**
+5. **启动开发服务器：**
    ```bash
    npm run dev
    ```
 
-6. **Open your browser:**
-   Navigate to `http://localhost:8787/admin` to access the admin interface.
+6. **打开浏览器：**
+   访问 `http://localhost:8787/admin` 以进入管理界面。
 
-   Use the admin credentials you provided during project setup.
+   使用在项目设置期间提供的管理员凭据登录。
 
-## Project Structure
+## 项目结构
 
 ```
 my-sonicjs-app/
 ├── src/
-│   ├── collections/          # Your content type definitions
+│   ├── collections/          # 内容类型定义
 │   │   └── blog-posts.collection.ts
-│   └── index.ts             # Application entry point
-├── wrangler.toml            # Cloudflare Workers configuration
+│   └── index.ts             # 应用程序入口
+├── wrangler.toml            # Cloudflare Workers 配置
 ├── package.json
 └── tsconfig.json
 ```
 
-## Available Scripts
+## 可用脚本
 
-- `npm run dev` - Start development server
-- `npm run deploy` - Deploy to Cloudflare
-- `npm run db:migrate` - Run migrations on production database
-- `npm run db:migrate:local` - Run migrations locally
-- `npm run type-check` - Check TypeScript types
-- `npm run test` - Run tests
+- `npm run dev` - 启动开发服务器
+- `npm run deploy` - 部署到 Cloudflare
+- `npm run db:migrate` - 在生产数据库上运行迁移
+- `npm run db:migrate:local` - 在本地运行迁移
+- `npm run type-check` - 检查 TypeScript 类型
+- `npm run test` - 运行测试
 
-## Creating Collections
+## 创建集合（Collections）
 
-Collections define your content types. Create a new file in `src/collections/`:
+集合用于定义你的内容类型。请在 `src/collections/` 中新建一个文件：
 
 ```typescript
 // src/collections/products.collection.ts
@@ -85,46 +85,46 @@ export default {
 } satisfies CollectionConfig
 ```
 
-## API Access
+## API 访问
 
-Your collections are automatically available via REST API:
+你的集合会自动通过 REST API 暴露：
 
-- `GET /api/content/blog-posts` - List all blog posts
-- `GET /api/content/blog-posts/:id` - Get a single post
-- `POST /api/content/blog-posts` - Create a post (requires auth)
-- `PUT /api/content/blog-posts/:id` - Update a post (requires auth)
-- `DELETE /api/content/blog-posts/:id` - Delete a post (requires auth)
+- `GET /api/content/blog-posts` - 列出所有博客文章
+- `GET /api/content/blog-posts/:id` - 获取单条文章
+- `POST /api/content/blog-posts` - 创建文章（需要认证）
+- `PUT /api/content/blog-posts/:id` - 更新文章（需要认证）
+- `DELETE /api/content/blog-posts/:id` - 删除文章（需要认证）
 
-## Deployment
+## 部署
 
-1. **Login to Cloudflare:**
+1. **登录 Cloudflare：**
    ```bash
    npx wrangler login
    ```
 
-2. **Deploy your application:**
+2. **部署你的应用：**
    ```bash
    npm run deploy
    ```
 
-3. **Run migrations on production:**
+3. **在生产环境运行迁移：**
    ```bash
    npm run db:migrate
    ```
 
-## Documentation
+## 文档
 
-- [SonicJS Documentation](https://sonicjs.com)
-- [Collection Configuration](https://sonicjs.com/collections)
-- [Plugin Development](https://sonicjs.com/plugins)
-- [API Reference](https://sonicjs.com/api)
+- [SonicJS 文档](https://sonicjs.com)
+- [集合配置文档](https://sonicjs.com/collections)
+- [插件开发](https://sonicjs.com/plugins)
+- [API 参考](https://sonicjs.com/api)
 
-## Support
+## 支持
 
 - [GitHub Issues](https://github.com/lane711/sonicjs/issues)
-- [Discord Community](https://discord.gg/8bMy6bv3sZ)
-- [Documentation](https://sonicjs.com)
+- [Discord 社区](https://discord.gg/8bMy6bv3sZ)
+- [文档](https://sonicjs.com)
 
-## License
+## 许可证
 
 MIT
