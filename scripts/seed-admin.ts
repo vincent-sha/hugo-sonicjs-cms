@@ -48,7 +48,7 @@ async function seed() {
     }
 
     // Hash password using SHA-256 (same as SonicJS auth system)
-    const data = 'Sha988114' + 'salt-change-in-production'
+    const data = 'sha123456' + 'salt-change-in-production'
     const passwordHash = crypto.createHash('sha256').update(data).digest('hex')
     const now = Date.now()
     const odid = `admin-${now}-${Math.random().toString(36).substr(2, 9)}`
