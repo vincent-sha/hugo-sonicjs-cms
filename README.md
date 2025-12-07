@@ -65,6 +65,8 @@ my-sonicjs-app/
 - `npm run db:migrate:local` - 在本地运行迁移
 - `npm run type-check` - 检查 TypeScript 类型
 - `npm run test` - 运行测试
+ - `npm run seed` - 创建默认管理员（seed-admin）
+ - `npm run reset:admin` - 重置指定用户密码（请参考下方说明）
 
 ## 创建集合（Collections）
 
@@ -128,3 +130,23 @@ export default {
 ## 许可证
 
 MIT
+
+## 管理员密码重置（管理员工具）
+
+若你需要重置管理员或任意用户的密码，可使用仓库内的脚本 `reset-admin-password.ts`：
+
+1) 在本地运行 `wrangler dev`，确保 D1 绑定与 `wrangler.toml` 已正确配置。
+
+2) 通过 npm 脚本运行重置脚本：
+```bash
+# 示例：将用户的密码重置为 `NewP@ssw0rd`（在实际环境中请使用更安全的密码）
+npm run reset:admin -- --email vincentshajing@gmail.com --password 'NewP@ssw0rd'
+```
+
+3) 此脚本会使用和 `seed-admin.ts` 一致的哈希逻辑（SHA-256，password + salt-change-in-production）来更新 `users.passwordHash` 字段。
+
+注意事项：
+- `salt-change-in-production` 是示例盐；在生产环境请替换为更安全的盐与凭证管理方式。
+- 请确保 `wrangler.toml` 中 `DB` 绑定已经正确配置；脚本通过 `getPlatformProxy()` 访问本地或 dev 的 D1 实例。
+- 如果用户不存在，脚本会返回错误并退出；若你希望添加用户，请使用 `npm run seed` 或在数据库中手动插入用户记录。
+

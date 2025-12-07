@@ -17,6 +17,8 @@
     "update": "npm install @sonicjs-cms/core@latest --save",
     "update:beta": "npm install @sonicjs-cms/core@beta --save",
     "seed": "tsx scripts/seed-admin.ts"
+    ,
+    "reset:admin": "tsx scripts/reset-admin-password.ts"
   },
   "dependencies": {
     "@sonicjs-cms/core": "^2.3.9"
